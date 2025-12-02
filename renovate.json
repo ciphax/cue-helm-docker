@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "enabledManagers": ["dockerfile", "custom.regex", "github-actions"],
+  "extends": [
+    "group:monorepos",
+    "group:recommended",
+    "mergeConfidence:age-confidence-badges",
+    "replacements:all",
+    "workarounds:all",
+    "docker:pinDigests",
+    "customManagers:dockerfileVersions",
+    ":automergeBranch",
+    ":automergeMinor",
+    ":automergeDigest"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "github actions"
+    }
+  ]
+}
