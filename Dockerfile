@@ -1,4 +1,4 @@
-FROM alpine@sha256:8a1f59ffb675680d47db6337b49d22281a139e9d709335b492be023728e11715 AS extractor
+FROM alpine@sha256:4b7ce07002c69e8f3d704a9c5d6fd3053be500b7f1c69fc0d80990c2ad8dd412 AS extractor
 
 ARG TARGETOS
 ARG TARGETARCH
@@ -15,7 +15,7 @@ ARG HELM_VERSION=4.0.1
 ADD https://get.helm.sh/helm-v${HELM_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz /tmp/helm.tar.gz
 RUN tar -xf /tmp/helm.tar.gz && mv ./**/helm helm && chmod +x helm
 
-FROM alpine@sha256:8a1f59ffb675680d47db6337b49d22281a139e9d709335b492be023728e11715
+FROM alpine@sha256:4b7ce07002c69e8f3d704a9c5d6fd3053be500b7f1c69fc0d80990c2ad8dd412
 
 COPY --from=extractor /out/cue /usr/bin/
 COPY --from=extractor /out/helm /usr/bin/
