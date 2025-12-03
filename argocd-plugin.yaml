@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ConfigManagementPlugin
+metadata:
+  name: cue
+spec:
+  discover:
+    fileName: "*_tool.cue"
+  generate:
+    command: [bash, -c]
+    args:
+      - |
+        set -euo pipefail
+
+        PARAMETERS=()
+        for var in $(compgen -e PARAM_); do
+          NAME="$(tr '[:upper:]' '[:lower:]' <<< "${var#PARAM_}")"
+          PARAMETERS+=(--inject "$NAME=${!var}")
+        done
+
+        export CUE_CACHE_DIR="/tmp/cue"
+        cue cmd render --inject "namespace=$ARGOCD_APP_NAMESPACE" "${PARAMETERS[@]}"
