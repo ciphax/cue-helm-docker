@@ -11,7 +11,7 @@ ADD https://github.com/cue-lang/cue/releases/download/v${CUE_VERSION}/cue_v${CUE
 RUN tar -xf /tmp/cue.tar.gz
 
 # renovate: datasource=github-releases depName=helm/helm extractVersion=v(?<version>.*)$
-ARG HELM_VERSION=4.0.2
+ARG HELM_VERSION=4.0.4
 ADD https://get.helm.sh/helm-v${HELM_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz /tmp/helm.tar.gz
 RUN tar -xf /tmp/helm.tar.gz && mv ./**/helm helm && chmod +x helm
 
