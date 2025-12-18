@@ -1,4 +1,4 @@
-FROM alpine@sha256:51183f2cfa6320055da30872f211093f9ff1d3cf06f39a0bdb212314c5dc7375 AS extractor
+FROM alpine@sha256:865b95f46d98cf867a156fe4a135ad3fe50d2056aa3f25ed31662dff6da4eb62 AS extractor
 
 ARG TARGETOS
 ARG TARGETARCH
@@ -16,7 +16,7 @@ ADD https://get.helm.sh/helm-v${HELM_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz /
 RUN tar -xf /tmp/helm.tar.gz && mv ./**/helm helm && chmod +x helm
 
 
-FROM alpine@sha256:51183f2cfa6320055da30872f211093f9ff1d3cf06f39a0bdb212314c5dc7375
+FROM alpine@sha256:865b95f46d98cf867a156fe4a135ad3fe50d2056aa3f25ed31662dff6da4eb62
 
 RUN apk add --no-cache bash
 ENTRYPOINT ["/bin/bash"]
