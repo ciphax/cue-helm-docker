@@ -6,7 +6,7 @@ ARG TARGETARCH
 WORKDIR /out
 
 # renovate: datasource=github-releases depName=cue-lang/cue extractVersion=v(?<version>.*)$
-ARG CUE_VERSION=0.15.1
+ARG CUE_VERSION=0.15.3
 ADD https://github.com/cue-lang/cue/releases/download/v${CUE_VERSION}/cue_v${CUE_VERSION}_${TARGETOS}_${TARGETARCH}.tar.gz /tmp/cue.tar.gz
 RUN tar -xf /tmp/cue.tar.gz
 
