@@ -15,17 +15,18 @@ ARG HELM_VERSION=4.1.1
 ADD https://get.helm.sh/helm-v${HELM_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz /tmp/helm.tar.gz
 RUN tar -xf /tmp/helm.tar.gz && mv ./**/helm helm && chmod +x helm
 
+# renovate: datasource=github-releases depName=mikefarah/yq extractVersion=v(?<version>.*)$
+ARG YQ_VERSION=4.52.4
+ADD https://github.com/mikefarah/yq/releases/download/v${YQ_VERSION}/yq_${TARGETOS}_${TARGETARCH} /out/yq
+RUN chmod +x yq
+
 
 FROM alpine@sha256:25109184c71bdad752c8312a8623239686a9a2071e8825f20acb8f2198c3f659
 
 RUN apk add --no-cache bash
 ENTRYPOINT ["/bin/bash"]
 
-COPY --from=extractor /out/cue /usr/bin/
-COPY --from=extractor /out/helm /usr/bin/
+COPY --from=extractor /out/cue /out/helm /out/yq /usr/bin/
 
 RUN adduser -D -u 1000 user
 USER 1000
-
-WORKDIR /home/argocd/cmp-server/config/
-COPY argocd-plugin.yaml plugin.yaml
