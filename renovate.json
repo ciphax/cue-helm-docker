@@ -17,6 +17,11 @@
     {
       "matchManagers": ["github-actions"],
       "groupName": "github actions"
+    },
+    {
+      "matchDatasources": ["github-releases"],
+      "matchDepNames": ["helm/helm"],
+      "automerge": false
     }
   ]
 }
