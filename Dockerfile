@@ -16,7 +16,7 @@ ADD https://get.helm.sh/helm-v${HELM_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz /
 RUN tar -xf /tmp/helm.tar.gz && mv ./**/helm helm && chmod +x helm
 
 # renovate: datasource=github-releases depName=mikefarah/yq extractVersion=v(?<version>.*)$
-ARG YQ_VERSION=4.53.4
+ARG YQ_VERSION=4.53.6
 ADD https://github.com/mikefarah/yq/releases/download/v${YQ_VERSION}/yq_${TARGETOS}_${TARGETARCH} /out/yq
 RUN chmod +x yq
 
